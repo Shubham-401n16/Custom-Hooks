@@ -1,0 +1,6 @@
+$spacing: 20px;
+
+@mixin space($margin, $padding) {
+    margin: $margin;
+    padding: $padding;
+  }
