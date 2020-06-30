@@ -4,8 +4,7 @@ import Button from 'react-bootstrap/Button';
 import useForm from '../hooks/useForm';
 import useFetch from '../hooks/useFetch';
 
-const {onChange, values } = useForm();
-const { setUrl, setRequest, isLoading, error, response } = useFetch();
+
 
 function ToDoForm(props) {
     const [description, setDescription] = useState(props.description || '');
@@ -13,7 +12,8 @@ function ToDoForm(props) {
     const [status, setStatus] = useState(props.status || 'incomplete');
     const [difficulty, setDifficulty] = useState(props.difficulty || 0);
 
-  
+    const {onChange, values } = useForm(formSubmit);
+    const { setUrl, setRequest, isLoading, error, response } = useFetch();
 
     function formSubmit() {
         props.addTask({
@@ -24,7 +24,14 @@ function ToDoForm(props) {
         });
     }
 
-    
+    await props.formSubmit([props.addTask]);
+
+    await getRequest({
+        url: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
+        method: 'GET'
+    })
+
+
 
     return (
         <Form id ="main-form">
