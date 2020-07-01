@@ -10,6 +10,7 @@ function ToDoList(props) {
                 key={i}
                 indx={i}
                 data={props.tasks[i]}
+                deleteTask={props.deleteTask}
                 modifyTask={props.modifyTask}
             />,
         );
