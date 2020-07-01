@@ -4,7 +4,7 @@ const useForm = (callback, initData) => {
 
   const [formData, setFormData] = useState(initData || {});
 
-  const updateForm = (key, vakue) => {
+  const updateForm = (key, value) => {
 
    let newFormData = { ...formData };
         newFormData[key] = value;

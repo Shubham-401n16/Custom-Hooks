@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import useForm from '../hooks/useForm';
-import useFetch from '../hooks/useFetch';
 
 
 
@@ -16,7 +15,6 @@ function ToDoForm(props) {
                 <Form.Control
                     as='textarea'
                     rows='3'
-                    value={description}
                     onChange={(e) => {
                         update('text', e.target.value);
                     }}
@@ -50,7 +48,6 @@ function ToDoForm(props) {
                     min={0}
                     max={5}
                     step={1}
-                    value={difficulty}
                     onChange={(e) => {
                         update('difficulty', e.target.value);
                     }}
