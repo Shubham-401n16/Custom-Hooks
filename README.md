@@ -8,7 +8,7 @@
 * [Code Sandbox](https://codesandbox.io/s/github/Shubham-401n16/Hooks-API)
 * [Github Actions]
 * [PR](https://github.com/Shubham-401n16/Custom-Hooks/pull/1)
-* [Netlify App](https://priceless-shockley-b74e26.netlify.app)
+* [Netlify App](customhooks.netlify.app)
 
 #### Documentation
 * [api docs](http://xyz.com/api-docs) (API servers)
