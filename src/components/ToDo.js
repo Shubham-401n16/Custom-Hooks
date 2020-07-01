@@ -2,36 +2,51 @@ import React, { useState, useEffect } from 'react';
 import ToDoForm from './ToDoForm';
 import ToDoList from './ToDoList';
 import Container from 'react-bootstrap/Container';
+import useFetch from '../hooks/useFetch';
 
 function ToDo(props) {
-    let [tasks, setTasks] = useState([]);
+    const { setRequest, response } = useFetch({
+        url: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
+    });
 
-    function addTask(taskDetails) {
-        setTasks([...tasks, taskDetails]);
+    async function addTask(taskDetails) {
+        await setRequest({
+            url: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
+            method: 'POST',
+            body: taskDetails,
+            runGet: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
+        });
     }
 
-    function modifyTask(indx, updatedTask) {
-        let currentTasks = [...tasks];
-        currentTasks[indx] = updatedTask;
-        setTasks(currentTasks);
+    async function modifyTask(indx, updatedTask) {
+        await setRequest({
+            url:
+                'https://todo-server-401n16.herokuapp.com/api/v1/todo/' +
+                response[indx]._id,
+            method: 'PUT',
+            body: updatedTask,
+            runGet: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
+        });
     }
 
-    useEffect(() => {
-        let incomplete = 0;
-
-        for (let i = 0; i < tasks.length; i++) {
-            if (tasks[i].status === 'incomplete') incomplete++;
-        }
-
-        if (incomplete === 1) document.title = '1 incomplete task';
-        else if (incomplete) document.title = incomplete + ' incomplete tasks';
-        else document.title = 'All tasks complete';
-    }, [tasks]);
+    async function deleteTask(indx) {
+        await setRequest({
+            url:
+                'https://todo-server-401n16.herokuapp.com/api/v1/todo/' +
+                response[indx]._id,
+            method: 'DELETE',
+            runGet: 'https://todo-server-401n16.herokuapp.com/api/v1/todo',
+        });
+    }
 
     return (
         <Container id = "main-container">
             <ToDoForm addTask={addTask} />
-            <ToDoList tasks={tasks} modifyTask={modifyTask} />
+            <ToDoList 
+            tasks={response} 
+            modifyTask={modifyTask} 
+            deleteTask={deleteTask}
+            />
         </Container>
     );
 }
