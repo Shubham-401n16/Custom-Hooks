@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 function useFetch(initRequest) {
 
     const [url, setUrl] = useState('');
-    const [request, setRequest] = useState({});
+    const [request, setRequest] = useState(initRequest);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
     const [response, setResponse] = useState();
@@ -13,11 +13,26 @@ function useFetch(initRequest) {
             await setIsLoading(true);
             await setError(null);
             await setResponse(null);
-            let res = await fetch(url, {
+
+            let res = await fetch(request.url ? request.url : url, {
                 method: request.method || 'GET',
                 body: JSON.stringify(request.body) || null,
-                headers: { ...request.headers, 'Content-Type': 'application/json','Accept': 'application/json' },
+                headers: { 
+                    ...request.headers, 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json' 
+                },
             });
+
+            if (request.runGet)
+                res = await fetch(request.runGet, {
+                    method: 'GET',
+                    headers: {
+                        ...request.headers,
+                        'content-type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                });
 
             await setIsLoading(false);
 
