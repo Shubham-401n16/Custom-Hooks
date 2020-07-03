@@ -1,0 +1,29 @@
+@import "~bootstrap/scss/bootstrap";
+@import 'base';
+
+#main-container{
+    padding-bottom: 150px;
+}
+  header , footer {
+    background-color:black;
+    color:white;
+    width: 40;
+    line-height: 4;
+    margin: 0;
+    padding: $spacing - 20;
+    text-align: center;
+
+    #external-account {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      img {
+        padding: 2px;
+        margin: 0 1rem;
+        border: 1px solid #ddd;
+        width: 20px;
+    
+      }
+  }
