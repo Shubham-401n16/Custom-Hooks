@@ -8,7 +8,7 @@
 * [Code Sandbox](https://codesandbox.io/s/peaceful-grass-kgysc)
 * [Github Actions]
 * [PR](https://github.com/Shubham-401n16/Custom-Hooks/pull/1)
-* [Netlify App](customhooks.netlify.app)
+* [Netlify App](https://customhooks.netlify.app)
 
 #### Documentation
 * [api docs](http://xyz.com/api-docs) (API servers)
